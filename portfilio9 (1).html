@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krutika Korade Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
+
+body{
+background:#0f172a;
+color:white;
+}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 10%;
+background:#111827;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav h2{
+color:#38bdf8;
+font-size:28px;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+flex-wrap:wrap;
+}
+
+nav ul li a{
+color:white;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#38bdf8;
+}
+
+/* HERO */
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:40px 20px;
+background:linear-gradient(to right,#0f172a,#1e293b);
+}
+
+.hero img{
+width:240px;
+height:240px;
+border-radius:50%;
+object-fit:cover;
+border:5px solid #38bdf8;
+box-shadow:0 0 30px #38bdf8;
+margin-bottom:25px;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:10px;
+}
+
+.hero span{
+color:#38bdf8;
+}
+
+.hero p{
+font-size:20px;
+color:#cbd5e1;
+margin-bottom:25px;
+}
+
+.btn{
+padding:12px 28px;
+background:#38bdf8;
+color:#000;
+font-weight:bold;
+border-radius:8px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.08);
+}
+
+/* COMMON */
+section{
+padding:70px 10%;
+}
+
+.title{
+text-align:center;
+font-size:35px;
+margin-bottom:40px;
+color:#38bdf8;
+}
+
+/* ABOUT */
+.about p{
+text-align:center;
+max-width:850px;
+margin:auto;
+font-size:18px;
+line-height:1.8;
+color:#cbd5e1;
+}
+
+/* SKILLS */
+.skills-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+}
+
+.skill{
+background:#1e293b;
+padding:20px;
+text-align:center;
+border-radius:10px;
+font-weight:bold;
+transition:0.3s;
+}
+
+.skill:hover{
+background:#38bdf8;
+color:black;
+transform:translateY(-5px);
+}
+
+/* PROJECTS */
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
+}
+
+.project{
+background:#1e293b;
+padding:20px;
+border-radius:10px;
+transition:0.3s;
+}
+
+.project:hover{
+transform:translateY(-8px);
+}
+
+.project h3{
+color:#38bdf8;
+margin:15px 0 10px;
+}
+
+.project p{
+color:#cbd5e1;
+line-height:1.6;
+}
+
+.project img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:10px;
+}
+
+/* CONTACT */
+.contact{
+text-align:center;
+}
+
+.contact p{
+margin:12px 0;
+font-size:18px;
+color:#cbd5e1;
+}
+
+/* FOOTER */
+footer{
+text-align:center;
+padding:20px;
+background:#111827;
+color:#94a3b8;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+nav ul{
+justify-content:center;
+}
+
+.hero h1{
+font-size:36px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.hero img{
+width:180px;
+height:180px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+<h2>Krutika.dev</h2>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#achievements">Achievements</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+<img src="https://drive.google.com/thumbnail?id=1aqZlyTi0yMPbb07VTRy77-F7xS-yfVBK&sz=w1000" alt="Krutika">
+
+<h1>Hello, I'm <span>Krutika Korade</span></h1>
+
+<p>Aspiring Developer | Web Designer | Computer Engineering Student</p>
+
+<a href="#contact" class="btn">Hire Me</a>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about">
+
+<h2 class="title">About Me</h2>
+
+<p>
+I am Krutika Korade, a passionate Computer Engineering student who loves coding,
+designing websites, solving problems and learning modern technologies.
+My goal is to become a successful software developer and build impactful digital solutions.
+</p>
+
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+
+<h2 class="title">My Skills</h2>
+
+<div class="skills-box">
+
+<div class="skill">HTML</div>
+<div class="skill">CSS</div>
+
+<div class="skill">Python</div>
+<div class="skill">C Programming</div>
+<div class="skill">Problem Solving</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+
+<h2 class="title">Projects</h2>
+
+<div class="projects">
+
+<div class="project">
+<h3>Portfolio Website</h3>
+<p>Modern responsive personal portfolio website using HTML CSS.</p>
+</div>
+
+<div class="project">
+<h3>ResumeIQ</h3>
+<p>Smart resume analyzer project using Python.</p>
+</div>
+
+<div class="project">
+<h3>Mini Project</h3>
+<p>Creative engineering based practical project.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+
+<h2 class="title">Achievements & Certificates</h2>
+
+<div class="projects">
+
+<div class="project">
+
+<img src="https://drive.google.com/thumbnail?id=15j5tV6xVKzlXV7DMEMVNFH1ReqJ4ev8h&sz=w1000">
+
+<h3>Certificate 1</h3>
+
+<p>Successfully completed certification program.</p>
+
+</div>
+
+<div class="project">
+
+<img src="https://drive.google.com/thumbnail?id=1mGR2YepAyMIlmlFvaBP2EkOKDtV1vtRo&sz=w1000">
+
+<h3>Certificate 2</h3>
+
+<p>Recognized for participation and excellence.</p>
+
+</div>
+
+<div class="project">
+
+<img src="https://drive.google.com/thumbnail?id=1GfDYgtwSnreWpI18bUuTWeBxH5UXU7bc&sz=w1000">
+
+<h3>Certificate 3</h3>
+
+<p>Completed training with strong performance.</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+
+<h2 class="title">Contact Me</h2>
+
+<p>📧 krutikakorade29@gmail.com</p>
+<p>📞 +91 9834562354</p>
+<p>📍 Maharashtra, India</p>
+
+</section>
+
+<footer>
+© 2026 Krutika Korade | All Rights Reserved
+</footer>
+
+</body>
+</html>
