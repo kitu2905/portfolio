@@ -5,115 +5,439 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Krutika Korade | Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
 
 <style>
+
+:root{
+--bg:#0f172a;
+--surface:#111827;
+--surface-strong:#0b1220;
+--text:#e5e7eb;
+--muted:#94a3b8;
+--accent:#2563eb;
+--accent-strong:#1d4ed8;
+--border:rgba(148,163,184,0.14);
+--shadow:0 18px 40px rgba(2,6,23,0.32);
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:'Manrope',sans-serif;
 scroll-behavior:smooth;
 }
 
+html{
+scroll-padding-top:92px;
+}
+
 body{
-background:#0f172a;
-color:white;
+background:linear-gradient(180deg,#0f172a 0%,#111827 100%);
+color:var(--text);
+line-height:1.7;
+text-rendering:optimizeLegibility;
+-webkit-font-smoothing:antialiased;
+}
+
+img{
+max-width:100%;
+display:block;
+}
+
+a,
+button{
+font:inherit;
+}
+
+nav{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(15,23,42,0.86);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+box-shadow:0 10px 30px rgba(2,6,23,0.22);
+}
+
+a:focus-visible,
+button:focus-visible{
+outline:2px solid var(--accent);
+outline-offset:3px;
+}
+
+::selection{
+background:rgba(125,211,252,0.2);
+color:var(--text);
 }
 
 /* NAVBAR */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 10%;
-background:#111827;
 position:sticky;
 top:0;
 z-index:1000;
+background:rgba(11,18,32,0.82);
+backdrop-filter:blur(16px);
+-webkit-backdrop-filter:blur(16px);
+border-bottom:1px solid var(--border);
+box-shadow:0 10px 30px rgba(2,6,23,0.14);
+}
+
+.nav-shell{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:24px;
+padding:16px 10%;
+position:relative;
 }
 
 .logo{
-font-size:28px;
+font-size:22px;
 font-weight:700;
-color:#38bdf8;
+letter-spacing:0.02em;
+color:#dbeafe;
+white-space:nowrap;
 }
 
-nav ul{
+.nav-toggle{
+display:none;
+align-items:center;
+justify-content:center;
+width:44px;
+height:44px;
+border-radius:12px;
+border:1px solid var(--border);
+background:rgba(30,41,59,0.8);
+color:#e2e8f0;
+font-size:18px;
+cursor:pointer;
+transition:0.25s ease;
+}
+
+.nav-toggle:hover{
+border-color:rgba(37,99,235,0.45);
+color:#dbeafe;
+}
+
+.nav-links{
 display:flex;
-gap:25px;
+align-items:center;
 list-style:none;
+gap:14px;
+padding:0;
+margin:0;
 }
 
-nav ul li a{
+.nav-links li a{
+position:relative;
 text-decoration:none;
-color:white;
+color:var(--muted);
 font-weight:500;
-transition:0.3s;
+font-size:14px;
+letter-spacing:0.01em;
+padding:8px 4px;
+transition:color 0.2s ease;
 }
 
-nav ul li a:hover{
-color:#38bdf8;
+.nav-links li a::after{
+content:'';
+position:absolute;
+left:0;
+bottom:-2px;
+width:100%;
+height:2px;
+border-radius:999px;
+background:var(--accent);
+transform:scaleX(0);
+transform-origin:left;
+transition:transform 0.25s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active{
+color:#dbeafe;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after{
+transform:scaleX(1);
+}
+
+.nav-links li a.active{
+text-shadow:none;
 }
 
 /* HERO */
 .hero{
 min-height:100vh;
-display:flex;
-justify-content:center;
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
 align-items:center;
-flex-direction:column;
-text-align:center;
-padding:20px;
-background:linear-gradient(to right,#0f172a,#1e293b);
+gap:56px;
+padding:92px 10%;
+background:
+radial-gradient(circle at top right,rgba(37,99,235,0.16),transparent 32%),
+linear-gradient(180deg,#0f172a 0%,#111827 100%);
+position:relative;
+overflow:hidden;
+text-align:left;
 }
 
-.hero img{
-width:230px;
-height:230px;
+.hero::after{
+content:'';
+position:absolute;
+inset:auto -120px -120px auto;
+width:220px;
+height:220px;
 border-radius:50%;
-object-fit:cover;
-border:5px solid #38bdf8;
-box-shadow:0 0 25px #38bdf8;
-margin-bottom:25px;
+background:rgba(37,99,235,0.08);
+filter:blur(32px);
+}
+
+.hero-content,
+.hero-visual{
+position:relative;
+z-index:1;
+}
+
+.hero-content{
+max-width:680px;
+animation:heroRise 0.7s ease both;
+}
+
+.hero-badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:10px 16px;
+border:1px solid rgba(148,163,184,0.25);
+border:1px solid var(--border);
+border-radius:999px;
+background:rgba(30,41,59,0.72);
+color:var(--muted);
+font-size:14px;
+margin-bottom:24px;
+}
+
+.hero-badge::before{
+content:'';
+width:10px;
+height:10px;
+border-radius:50%;
+background:var(--accent-strong);
 }
 
 .hero h1{
-font-size:52px;
-margin-bottom:10px;
+font-size:58px;
+line-height:1.02;
+margin-bottom:18px;
+max-width:10ch;
 }
 
 .hero span{
-color:#38bdf8;
+color:#93c5fd;
 }
 
 .hero p{
-font-size:20px;
+font-size:18px;
 color:#cbd5e1;
-margin-bottom:25px;
-max-width:700px;
+margin-bottom:30px;
+max-width:640px;
+line-height:1.85;
+}
+
+.hero-meta{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-bottom:30px;
+}
+
+.hero-pill{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:10px 14px;
+border-radius:999px;
+background:rgba(30,41,59,0.7);
+border:1px solid rgba(148,163,184,0.16);
+color:#e2e8f0;
+font-size:13px;
+}
+
+.hero-actions{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+align-items:center;
+margin-bottom:22px;
+}
+
+.hero-social{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.hero-social a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+width:46px;
+height:46px;
+border-radius:50%;
+background:rgba(30,41,59,0.85);
+border:1px solid rgba(148,163,184,0.16);
+color:#e2e8f0;
+text-decoration:none;
+transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease,color 0.25s ease;
+}
+
+.hero-social a:hover{
+transform:translateY(-3px);
+border-color:rgba(37,99,235,0.65);
+color:#dbeafe;
+background:rgba(37,99,235,0.12);
+}
+
+.hero-visual{
+display:flex;
+justify-content:center;
+animation:heroRise 1.05s ease both;
 }
 
 .btn-group{
 display:flex;
 gap:15px;
 flex-wrap:wrap;
-justify-content:center;
+justify-content:flex-start;
+margin-bottom:20px;
 }
 
 .btn{
 padding:12px 28px;
-background:#38bdf8;
-color:black;
+background:var(--accent);
+color:#ffffff;
 text-decoration:none;
 font-weight:600;
-border-radius:8px;
+border-radius:999px;
 transition:0.3s;
+box-shadow:0 14px 30px rgba(37,99,235,0.25);
 }
 
 .btn:hover{
-transform:scale(1.05);
+transform:translateY(-2px) scale(1.02);
+}
+
+.btn.secondary{
+background:rgba(30,41,59,0.72);
+color:#e2e8f0;
+border:1px solid rgba(148,163,184,0.18);
+}
+
+.btn.secondary:hover{
+background:rgba(37,99,235,0.12);
+}
+
+.hero-card{
+width:min(430px,100%);
+padding:26px;
+border-radius:30px;
+background:linear-gradient(180deg,rgba(17,24,39,0.88),rgba(15,23,42,0.94));
+border:1px solid rgba(148,163,184,0.14);
+backdrop-filter:blur(12px);
+box-shadow:0 28px 70px rgba(2,6,23,0.45);
+text-align:center;
+position:relative;
+overflow:hidden;
+}
+
+.hero-card::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(37,99,235,0.12),transparent 35%);
+pointer-events:none;
+}
+
+.hero-avatar-wrap{
+position:relative;
+z-index:1;
+margin-bottom:18px;
+}
+
+.hero img{
+width:220px;
+height:220px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid rgba(37,99,235,0.95);
+box-shadow:0 0 0 10px rgba(37,99,235,0.08),0 24px 50px rgba(0,0,0,0.32);
+margin:0 auto;
+animation:heroFloat 6s ease-in-out infinite;
+}
+
+.hero-card h3{
+font-size:24px;
+margin-bottom:10px;
+position:relative;
+z-index:1;
+}
+
+.hero-card p{
+font-size:15px;
+line-height:1.75;
+margin-bottom:0;
+position:relative;
+z-index:1;
+color:#cbd5e1;
+}
+
+.hero-kicker{
+display:inline-flex;
+align-items:center;
+gap:8px;
+margin-bottom:14px;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(37,99,235,0.12);
+border:1px solid rgba(37,99,235,0.18);
+color:#bfdbfe;
+font-size:13px;
+font-weight:600;
+position:relative;
+z-index:1;
+}
+
+.hero-note{
+margin-top:16px;
+font-size:14px;
+color:#94a3b8;
+line-height:1.7;
+}
+
+@keyframes heroRise{
+from{
+opacity:0;
+transform:translateY(18px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes heroFloat{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-6px);
+}
 }
 
 /* SECTION */
@@ -125,103 +449,346 @@ padding:80px 10%;
 text-align:center;
 font-size:36px;
 margin-bottom:40px;
-color:#38bdf8;
+color:#dbeafe;
 }
 
 /* ABOUT */
+.about{
+text-align:center;
+}
+
 .about p{
-max-width:900px;
-margin:auto;
+max-width:760px;
+margin:0 auto;
 text-align:center;
 line-height:1.9;
-font-size:18px;
+font-size:17px;
 color:#cbd5e1;
+}
+
+.about-key{
+color:#93c5fd;
+font-weight:600;
+padding:0 2px;
+}
+
+/* EDUCATION */
+.education{
+display:flex;
+justify-content:center;
+}
+
+.education-card{
+width:min(760px,100%);
+padding:28px;
+border-radius:20px;
+background:linear-gradient(180deg,rgba(17,24,39,0.96),rgba(15,23,42,0.96));
+border:1px solid rgba(148,163,184,0.14);
+box-shadow:0 18px 40px rgba(15,23,42,0.25);
+}
+
+.education-card h3{
+font-size:26px;
+color:#f8fafc;
+margin-bottom:8px;
+}
+
+.education-card .degree{
+color:#93c5fd;
+font-size:18px;
+font-weight:600;
+margin-bottom:16px;
+}
+
+.education-details{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:14px;
+}
+
+.education-item{
+padding:14px 16px;
+border-radius:14px;
+background:rgba(148,163,184,0.08);
+border:1px solid rgba(148,163,184,0.1);
+color:#e2e8f0;
+line-height:1.6;
+}
+
+.education-item strong{
+display:block;
+color:#bfdbfe;
+margin-bottom:4px;
+font-size:13px;
+text-transform:uppercase;
+letter-spacing:0.04em;
 }
 
 /* SKILLS */
 .skills-box{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:22px;
 }
 
 .skill{
-background:#1e293b;
-padding:20px;
-text-align:center;
-border-radius:12px;
-font-weight:600;
-transition:0.3s;
+position:relative;
+overflow:hidden;
+background:linear-gradient(180deg,rgba(17,24,39,0.98),rgba(15,23,42,0.98));
+padding:26px 22px;
+border-radius:20px;
+border:1px solid rgba(148,163,184,0.14);
+box-shadow:0 18px 40px rgba(15,23,42,0.25);
+text-align:left;
+transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;
 }
 
 .skill:hover{
-background:#38bdf8;
-color:black;
-transform:translateY(-5px);
+transform:translateY(-8px);
+border-color:rgba(37,99,235,0.4);
+box-shadow:0 22px 50px rgba(37,99,235,0.12);
+}
+
+.skill::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(37,99,235,0.12),transparent 55%);
+opacity:0;
+transition:opacity 0.3s ease;
+}
+
+.skill:hover::before{
+opacity:1;
+}
+
+.skill-icon{
+width:56px;
+height:56px;
+display:grid;
+place-items:center;
+border-radius:16px;
+margin-bottom:18px;
+background:rgba(37,99,235,0.12);
+color:#93c5fd;
+font-size:24px;
+}
+
+.skill h3{
+font-size:20px;
+margin-bottom:10px;
+color:#f8fafc;
+}
+
+.skill p{
+color:#cbd5e1;
+line-height:1.7;
+font-size:15px;
+margin-bottom:16px;
+}
+
+.skill-tag{
+display:inline-flex;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(37,99,235,0.1);
+border:1px solid rgba(37,99,235,0.16);
+color:#bfdbfe;
+font-size:13px;
+font-weight:600;
 }
 
 /* PROJECTS */
 .projects{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:28px;
+align-items:stretch;
 }
 
 .project{
-background:#1e293b;
-padding:25px;
-border-radius:12px;
-transition:0.3s;
+background:linear-gradient(180deg,rgba(17,24,39,0.95),rgba(15,23,42,0.95));
+padding:28px;
+border-radius:20px;
+border:1px solid rgba(148,163,184,0.14);
+box-shadow:0 18px 40px rgba(15,23,42,0.28);
+transition:0.3s ease;
+display:flex;
+flex-direction:column;
+gap:18px;
 }
 
 .project:hover{
 transform:translateY(-8px);
+border-color:rgba(37,99,235,0.35);
 }
 
 .project h3{
-color:#38bdf8;
-margin-bottom:10px;
+color:#dbeafe;
+margin-bottom:0;
+font-size:24px;
+}
+
+.project-badge{
+display:inline-flex;
+align-items:center;
+width:fit-content;
+padding:8px 12px;
+border-radius:999px;
+background:rgba(37,99,235,0.12);
+border:1px solid rgba(37,99,235,0.18);
+color:#bfdbfe;
+font-size:13px;
+font-weight:600;
 }
 
 .project p{
 color:#cbd5e1;
 line-height:1.7;
-margin-bottom:15px;
+margin-bottom:0;
+}
+
+.project-tech{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.project-tech span{
+padding:8px 12px;
+border-radius:999px;
+background:rgba(148,163,184,0.1);
+border:1px solid rgba(148,163,184,0.12);
+color:#e2e8f0;
+font-size:13px;
+}
+
+.project-links{
+display:flex;
+flex-wrap:wrap;
+gap:12px;
+margin-top:auto;
 }
 
 .project a{
 display:inline-block;
-padding:10px 20px;
-background:#38bdf8;
-color:black;
+padding:11px 18px;
+background:var(--accent);
+color:#ffffff;
 text-decoration:none;
-border-radius:6px;
+border-radius:999px;
 font-weight:600;
+transition:0.3s;
+}
+
+.project a.secondary{
+background:transparent;
+color:#e2e8f0;
+border:1px solid rgba(148,163,184,0.22);
+}
+
+.project a:hover{
+transform:translateY(-2px);
+}
+
+.project-footnote{
+color:#94a3b8;
+font-size:14px;
+line-height:1.6;
 }
 
 /* CERTIFICATES */
 .certificates{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(290px,1fr));
+gap:28px;
 }
 
 .certificate{
-background:#1e293b;
-padding:15px;
-border-radius:12px;
+position:relative;
+overflow:hidden;
+padding:18px;
+border-radius:20px;
+background:linear-gradient(180deg,rgba(17,24,39,0.98),rgba(15,23,42,0.98));
+border:1px solid rgba(148,163,184,0.14);
+box-shadow:0 18px 40px rgba(15,23,42,0.25);
+transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;
+}
+
+.certificate:hover{
+transform:translateY(-8px);
+border-color:rgba(37,99,235,0.34);
+box-shadow:0 24px 54px rgba(2,6,23,0.42);
+}
+
+.certificate::before{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(37,99,235,0.08),transparent 38%);
+opacity:0;
+transition:opacity 0.3s ease;
+pointer-events:none;
+}
+
+.certificate:hover::before{
+opacity:1;
+}
+
+.certificate-media{
+position:relative;
+overflow:hidden;
+border-radius:16px;
+margin-bottom:16px;
 }
 
 .certificate img{
 width:100%;
-height:220px;
+height:230px;
 object-fit:cover;
-border-radius:10px;
+display:block;
+transition:transform 0.35s ease;
+}
+
+.certificate:hover img{
+transform:scale(1.03);
 }
 
 .certificate h3{
-margin-top:12px;
-color:#38bdf8;
+margin-bottom:10px;
+color:#f8fafc;
+font-size:20px;
+}
+
+.certificate p{
+color:#cbd5e1;
+font-size:14px;
+line-height:1.7;
+margin-bottom:16px;
+}
+
+.certificate-actions{
+display:flex;
+justify-content:flex-start;
+}
+
+.certificate-actions a{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:11px 16px;
+border-radius:999px;
+background:var(--accent);
+color:#ffffff;
+text-decoration:none;
+font-weight:600;
+font-size:14px;
+transition:transform 0.25s ease,background 0.25s ease;
+}
+
+.certificate-actions a:hover{
+transform:translateY(-2px);
+background:#1d4ed8;
 }
 
 /* CONTACT */
@@ -236,13 +803,13 @@ color:#cbd5e1;
 }
 
 .contact a{
-color:#38bdf8;
+color:#93c5fd;
 text-decoration:none;
 }
 
 /* FOOTER */
 footer{
-background:#111827;
+background:#0b1220;
 padding:20px;
 text-align:center;
 color:#94a3b8;
@@ -270,21 +837,82 @@ transform:translateY(0);
 @media(max-width:768px){
 
 nav{
-flex-direction:column;
-gap:15px;
+background:rgba(15,23,42,0.94);
 }
 
-nav ul{
+.nav-shell{
+padding:14px 7%;
 flex-wrap:wrap;
-justify-content:center;
+}
+
+.nav-toggle{
+display:inline-flex;
+margin-left:auto;
+}
+
+.nav-links{
+display:none;
+flex-direction:column;
+align-items:stretch;
+gap:8px;
+width:100%;
+padding:14px;
+margin-top:12px;
+border-radius:18px;
+background:rgba(17,24,39,0.96);
+border:1px solid rgba(148,163,184,0.12);
+box-shadow:0 18px 50px rgba(2,6,23,0.35);
+}
+
+.nav-links.open{
+display:flex;
+}
+
+.nav-links li a{
+display:block;
+padding:12px 14px;
+border-radius:12px;
+}
+
+.nav-links li a::after{
+bottom:8px;
+left:14px;
+width:calc(100% - 28px);
 }
 
 .hero h1{
-font-size:36px;
+font-size:38px;
+max-width:none;
 }
 
 .hero p{
 font-size:16px;
+}
+
+.hero{
+grid-template-columns:1fr;
+text-align:center;
+padding:60px 7%;
+}
+
+.hero-content{
+max-width:100%;
+}
+
+.hero h1,
+.hero p,
+.btn-group{
+justify-content:center;
+margin-left:auto;
+margin-right:auto;
+}
+
+.hero-card{
+width:100%;
+}
+
+.hero-social{
+justify-content:center;
 }
 
 .hero img{
@@ -299,32 +927,69 @@ height:180px;
 <body>
 
 <nav>
+<div class="nav-shell">
 <div class="logo">Krutika.dev</div>
 
-<ul>
-<li><a href="#home">Home</a></li>
+<button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-navigation">
+<i class="fa-solid fa-bars"></i>
+</button>
+
+<ul class="nav-links" id="primary-navigation">
+<li><a href="#home" class="active">Home</a></li>
 <li><a href="#about">About</a></li>
 <li><a href="#skills">Skills</a></li>
 <li><a href="#projects">Projects</a></li>
 <li><a href="#certificates">Certificates</a></li>
 <li><a href="#contact">Contact</a></li>
 </ul>
+</div>
 </nav>
 
 <section class="hero" id="home">
 
-<img src="https://drive.google.com/thumbnail?id=1aqZlyTi0yMPbb07VTRy77-F7xS-yfVBK&sz=w1000" alt="Krutika">
+<div class="hero-content">
 
-<h1>Hello, I'm <span>Krutika Korade</span></h1>
+<div class="hero-badge">Software Engineering • AI • Web Development</div>
+
+<h1>Computer Engineering student exploring software, AI, and web development.</h1>
 
 <p>
-Computer Engineering Student passionate about Web Development,
-Python Programming and building real-world projects.
+I’m Krutika Korade, a Computer Engineering student interested in software development, AI, and web development. I enjoy building clean digital experiences and learning how to create practical, user-friendly solutions.
 </p>
 
+<div class="hero-meta">
+<span class="hero-pill"><i class="fa-solid fa-code"></i> Software Engineering</span>
+<span class="hero-pill"><i class="fa-solid fa-brain"></i> AI Exploration</span>
+<span class="hero-pill"><i class="fa-solid fa-globe"></i> Web Development</span>
+</div>
+
 <div class="btn-group">
-<a href="#contact" class="btn">Contact Me</a>
-<a href="resume.pdf" class="btn" download>Download Resume</a>
+<a href="#projects" class="btn">View Projects</a>
+<a href="resume.pdf" class="btn secondary" download>Download Resume</a>
+</div>
+
+<div class="hero-social">
+<a href="https://github.com/kitu2905/" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+<i class="fa-brands fa-github"></i>
+</a>
+<a href="https://www.linkedin.com/feed/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+<i class="fa-brands fa-linkedin-in"></i>
+</a>
+</div>
+
+<div class="hero-note">Open to internships, software projects, and collaborative product work.</div>
+
+</div>
+
+<div class="hero-visual">
+<div class="hero-card">
+<div class="hero-avatar-wrap">
+<img src="https://drive.google.com/thumbnail?id=1aqZlyTi0yMPbb07VTRy77-F7xS-yfVBK&sz=w1000" alt="Krutika">
+</div>
+<div class="hero-kicker"><i class="fa-solid fa-arrow-trend-up"></i> Available for opportunities</div>
+<h3>Building practical software with a clean, human feel.</h3>
+<p>I care about simple structure, clear design, and code that is easy to maintain.</p>
+</div>
 </div>
 
 </section>
@@ -333,12 +998,34 @@ Python Programming and building real-world projects.
 
 <h2 class="title">About Me</h2>
 
-<p>
-I am a Computer Engineering student with a strong interest in web development,
-programming and technology. I enjoy creating modern websites, solving coding
-problems and learning new tools. My goal is to become a skilled software
-developer and contribute to impactful projects.
+<p class="about-copy">
+I’m a second-year Computer Engineering student passionate about <span class="about-key">software engineering</span>, <span class="about-key">AI</span>, and <span class="about-key">web development</span>. I enjoy building clean, useful interfaces, solving real problems, and learning how to create reliable digital products through every project I take on.
 </p>
+
+</section>
+
+<section id="education" class="education">
+
+<div class="education-card">
+
+<h2 class="title">Education</h2>
+
+<h3>MIT Academy of Engineering</h3>
+<div class="degree">B.Tech in Computer Engineering</div>
+
+<div class="education-details">
+<div class="education-item">
+<strong>CGPA</strong>
+8.09
+</div>
+
+<div class="education-item">
+<strong>Expected Graduation</strong>
+2029
+</div>
+</div>
+
+</div>
 
 </section>
 
@@ -348,14 +1035,54 @@ developer and contribute to impactful projects.
 
 <div class="skills-box">
 
-<div class="skill">HTML</div>
-<div class="skill">CSS</div>
-<div class="skill">JavaScript</div>
-<div class="skill">Python</div>
-<div class="skill">C Programming</div>
-<div class="skill">Git & GitHub</div>
-<div class="skill">Responsive Design</div>
-<div class="skill">Problem Solving</div>
+<div class="skill">
+<div class="skill-icon"><i class="fa-brands fa-html5"></i></div>
+<h3>HTML</h3>
+<p>Semantic, accessible structure for modern websites and interfaces.</p>
+<span class="skill-tag">Markup</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-brands fa-css3-alt"></i></div>
+<h3>CSS</h3>
+<p>Clean layouts, visual polish, and responsive styling across devices.</p>
+<span class="skill-tag">Styling</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-brands fa-js"></i></div>
+<h3>JavaScript</h3>
+<p>Interactive behavior, dynamic interfaces, and frontend logic.</p>
+<span class="skill-tag">Interactivity</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+<h3>Python</h3>
+<p>Problem solving, automation, and building practical programming solutions.</p>
+<span class="skill-tag">Programming</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+<h3>C Programming</h3>
+<p>Strong foundation in logic, memory concepts, and low-level programming.</p>
+<span class="skill-tag">Core CS</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+<h3>Git & GitHub</h3>
+<p>Version control, collaboration, and project management workflows.</p>
+<span class="skill-tag">Version Control</span>
+</div>
+
+<div class="skill">
+<div class="skill-icon"><i class="fa-solid fa-lightbulb"></i></div>
+<h3>Problem Solving</h3>
+<p>Breaking down complex tasks and building thoughtful solutions.</p>
+<span class="skill-tag">Thinking</span>
+</div>
 
 </div>
 
@@ -368,11 +1095,45 @@ developer and contribute to impactful projects.
 <div class="projects">
 
 <div class="project">
+<span class="project-badge">Featured Project</span>
 <h3>Portfolio Website</h3>
 <p>
-Responsive personal portfolio website built using HTML and CSS.
+A responsive personal portfolio built to present my skills, projects, and contact
+information in a clear and professional layout.
 </p>
-<a href="#">file:///C:/Users/hp/OneDrive/Desktop/kitu/portfilio8.html#</a>
+<p>
+Technologies used: HTML, CSS, JavaScript, Responsive Design.
+</p>
+<div class="project-tech">
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>Responsive Design</span>
+</div>
+<div class="project-links">
+<a href="https://github.com/kitu2905/" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a href="file:///C:/Users/hp/portfolio/portfilio9%20(1).html" target="_blank" rel="noopener noreferrer" class="secondary">Live Demo</a>
+</div>
+</div>
+
+<div class="project">
+<span class="project-badge">Case Study</span>
+<h3>Modern Portfolio Redesign</h3>
+<p>
+A clean, modern redesign focused on stronger visuals, better hierarchy, and a more polished introduction for visitors.
+</p>
+<p>
+Technologies used: HTML, CSS, Responsive Layouts.
+</p>
+<div class="project-tech">
+<span>HTML</span>
+<span>CSS</span>
+<span>UI Design</span>
+</div>
+<div class="project-links">
+<a href="https://github.com/kitu2905/" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a href="file:///C:/Users/hp/portfolio/portfilio9%20(1).html#home" target="_blank" rel="noopener noreferrer" class="secondary">Live Demo</a>
+</div>
 </div>
 
 </section>
@@ -384,18 +1145,36 @@ Responsive personal portfolio website built using HTML and CSS.
 <div class="certificates">
 
 <div class="certificate">
-<img src="https://drive.google.com/thumbnail?id=15j5tV6xVKzlXV7DMEMVNFH1ReqJ4ev8h&sz=w1000">
+<div class="certificate-media">
+<img src="https://drive.google.com/thumbnail?id=15j5tV6xVKzlXV7DMEMVNFH1ReqJ4ev8h&sz=w1000" alt="Certificate 1">
+</div>
 <h3>Certificate 1</h3>
+<p>Completed certificate showcasing practical learning and technical growth.</p>
+<div class="certificate-actions">
+<a href="https://drive.google.com/thumbnail?id=15j5tV6xVKzlXV7DMEMVNFH1ReqJ4ev8h&sz=w1000" target="_blank" rel="noopener noreferrer">View Certificate</a>
+</div>
 </div>
 
 <div class="certificate">
-<img src="https://drive.google.com/thumbnail?id=1mGR2YepAyMIlmlFvaBP2EkOKDtV1vtRo&sz=w1000">
+<div class="certificate-media">
+<img src="https://drive.google.com/thumbnail?id=1mGR2YepAyMIlmlFvaBP2EkOKDtV1vtRo&sz=w1000" alt="Certificate 2">
+</div>
 <h3>Certificate 2</h3>
+<p>Recognition for continued development in core technical and problem-solving skills.</p>
+<div class="certificate-actions">
+<a href="https://drive.google.com/thumbnail?id=1mGR2YepAyMIlmlFvaBP2EkOKDtV1vtRo&sz=w1000" target="_blank" rel="noopener noreferrer">View Certificate</a>
+</div>
 </div>
 
 <div class="certificate">
-<img src="https://drive.google.com/thumbnail?id=1GfDYgtwSnreWpI18bUuTWeBxH5UXU7bc&sz=w1000">
+<div class="certificate-media">
+<img src="https://drive.google.com/thumbnail?id=1GfDYgtwSnreWpI18bUuTWeBxH5UXU7bc&sz=w1000" alt="Certificate 3">
+</div>
 <h3>Certificate 3</h3>
+<p>A certificate highlighting progress across programming and digital learning areas.</p>
+<div class="certificate-actions">
+<a href="https://drive.google.com/thumbnail?id=1GfDYgtwSnreWpI18bUuTWeBxH5UXU7bc&sz=w1000" target="_blank" rel="noopener noreferrer">View Certificate</a>
+</div>
 </div>
 
 </div>
@@ -411,7 +1190,7 @@ Responsive personal portfolio website built using HTML and CSS.
 <p>
 🐙 GitHub:
 <a href="https://github.com/kitu2905/" target="_blank">
-YOUR_GITHUB_USERNAME
+kitu2905
 </a>
 </p>
 
@@ -425,6 +1204,56 @@ View Profile
 <p>📍 Maharashtra, India</p>
 
 </section>
+
+<script>
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const sections = Array.from(navAnchors)
+	.map(link => document.querySelector(link.getAttribute('href')))
+	.filter(Boolean);
+
+if (navToggle && navLinks) {
+navToggle.addEventListener('click', () => {
+const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+navToggle.setAttribute('aria-expanded', String(!expanded));
+navLinks.classList.toggle('open');
+navToggle.innerHTML = navLinks.classList.contains('open')
+	? '<i class="fa-solid fa-xmark"></i>'
+	: '<i class="fa-solid fa-bars"></i>';
+});
+}
+
+navAnchors.forEach(link => {
+link.addEventListener('click', () => {
+if (window.innerWidth <= 768 && navLinks.classList.contains('open')) {
+navLinks.classList.remove('open');
+navToggle.setAttribute('aria-expanded', 'false');
+navToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+}
+});
+});
+
+const setActiveLink = () => {
+let currentSection = sections[0];
+const offset = window.innerHeight * 0.35;
+
+sections.forEach(section => {
+const top = section.getBoundingClientRect().top;
+if (top - offset <= 0) {
+currentSection = section;
+}
+});
+
+navAnchors.forEach(link => {
+const isActive = currentSection && link.getAttribute('href') === `#${currentSection.id}`;
+link.classList.toggle('active', Boolean(isActive));
+});
+};
+
+setActiveLink();
+window.addEventListener('scroll', setActiveLink, { passive: true });
+</script>
 
 <footer>
 Made with ❤️ by Krutika Korade | © 2026
